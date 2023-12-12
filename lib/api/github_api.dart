@@ -8,20 +8,21 @@ class GitHubApi {
   final String suffixUrl = '/stats/commit_activity';
   // 'https://api.github.com/repos/$owner/$repo/stats/commit_activity';
 
-  dynamic getCommitHistory({required String userName, required String repositoryName}) async {
+  Future<dynamic> getCommitHistory({required String userName, required String repositoryName}) async {
     final finalGetUrl = '$baseUrl$userName/$repositoryName$suffixUrl';
-
-    print(finalGetUrl);
 
     var response = await http.get(Uri.parse(finalGetUrl));
 
     var data = json.decode(response.body);
 
-    if (response.statusCode == 200) {
-      return data;
-    } else {
-      log(response.statusCode.toString());
-      throw Exception('Failed to load commits');
-    }
+    log(data.toString());
+    return data;
+
+    // if (response.statusCode == 200) {
+    //   return data;
+    // } else {
+    //   log(response.statusCode.toString());
+    //   throw Exception('Failed to load commits');
+    // }
   }
 }

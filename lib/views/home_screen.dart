@@ -41,7 +41,7 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var commitProvider = Provider.of<CommitsProvider>(context);
+    var commitProvider = Provider.of<CommitsProvider>(context, listen: true);
     return Scaffold(
       backgroundColor: Color(0xFF3D4042),
       body: Container(
@@ -51,10 +51,11 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
           children: [
             SizedBox(height: 200),
             SearchBarCard(
-              onTapSearch: () {
+              onTapSearch: () async {
                 // fetchCommits();
-                commitProvider.getRepoCommitHistory(searchTextController.text);
-                print(searchTextController.text);
+                data = await commitProvider.getRepoCommitHistory(searchTextController.text);
+
+                setState(() {});
               },
               searchInputController: searchTextController,
             ),
