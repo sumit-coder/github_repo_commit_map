@@ -23,8 +23,8 @@ class CommitHistoryScreen extends StatefulWidget {
 }
 
 class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
-  final String owner = 'flutter';
-  final String repo = 'flutter';
+  final String owner = 'sumit-coder';
+  final String repo = 'sumit-coder';
   late http.Response response;
   late List<dynamic> data = [];
 

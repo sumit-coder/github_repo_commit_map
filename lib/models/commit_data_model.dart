@@ -11,9 +11,9 @@ class CommitDataModel {
     for (var week in jsonData) {
       weeks.add(
         WeekModel(
+          totalCommit: week['total'],
+          weekStart: week['week'],
           days: week[''],
-          weekStart: week[''],
-          totalCommit: week[''],
         ),
       );
     }
