@@ -1,21 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:github_repo_commit_map/provider/commits_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'widgets/search_bar_card.dart';
 import 'package:http/http.dart' as http;
-
-// class GithubCommitHeatmap extends StatelessWidget {
-//   const GithubCommitHeatmap({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Column(
-//         children: [],
-//       ),
-//     );
-//   }
-// }
 
 class CommitHistoryScreen extends StatefulWidget {
   @override
@@ -28,7 +17,7 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
   late http.Response response;
   late List<dynamic> data = [];
 
-  final TextEditingController searchTextController = TextEditingController(text: 'http://github.com/');
+  final TextEditingController searchTextController = TextEditingController(text: 'https://github.com/sumit-coder/sumit-coder');
 
   fetchCommits() async {
     response = await http.get(Uri.parse('https://api.github.com/repos/$owner/$repo/stats/commit_activity'));
@@ -52,6 +41,7 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var commitProvider = Provider.of<CommitsProvider>(context);
     return Scaffold(
       backgroundColor: Color(0xFF3D4042),
       body: Container(
@@ -62,7 +52,8 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
             SizedBox(height: 200),
             SearchBarCard(
               onTapSearch: () {
-                fetchCommits();
+                // fetchCommits();
+                commitProvider.getRepoCommitHistory(searchTextController.text);
                 print(searchTextController.text);
               },
               searchInputController: searchTextController,

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'views/home_screen.dart';
 
 void main() {
+  Provider.debugCheckInvalidValueType = null;
   runApp(const MyApp());
 }
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<CommitsProvider>(create: (_) => CommitsProvider()),
+        Provider<CommitsProvider>(create: (context) => CommitsProvider()),
       ],
       child: MaterialApp(
         title: 'Github Repo Commit Map',

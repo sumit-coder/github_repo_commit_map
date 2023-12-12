@@ -32,14 +32,16 @@ class SearchBarCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            width: 400 - 64,
+            width: 600,
             height: 64,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Center(
               child: TextField(
                 controller: searchInputController,
+                style: const TextStyle(color: Colors.grey, fontSize: 16, height: 1),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
+
                   // focusedBorder: InputBorder.none,
                 ),
               ),

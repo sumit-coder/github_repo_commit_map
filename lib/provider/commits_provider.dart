@@ -11,5 +11,7 @@ class CommitsProvider with ChangeNotifier {
     dynamic data = await _gitHubApi.getCommitHistory(userName: userInputStrings[0], repositoryName: userInputStrings[1]);
 
     print(data);
+    // print(userInput);
+    // print(userInputStrings);
   }
 }
