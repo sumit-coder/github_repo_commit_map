@@ -1,6 +1,6 @@
 # github_repo_commit_map
 
-A new Flutter project.
+![Screenshot 2023-12-13 135552](https://github.com/sumit-coder/github_repo_commit_map/assets/55745378/bc149e85-6c67-44fe-8cce-a276998f0d97)
 
 ## Getting Started
 
