@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:github_repo_commit_map/provider/commits_provider.dart';
 import 'package:github_repo_commit_map/utils/utility.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -159,7 +160,7 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
                               weekIndex: index,
                               maxCommitCount: maxCount,
                               weekCommitByDays: data[index]['days'],
-                            );
+                            ).animate().fadeIn(delay: Duration(milliseconds: index * 20));
                           },
                         ),
                       ),

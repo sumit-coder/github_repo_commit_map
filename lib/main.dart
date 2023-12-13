@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:github_repo_commit_map/provider/commits_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -6,6 +7,7 @@ import 'views/home_screen.dart';
 
 void main() {
   Provider.debugCheckInvalidValueType = null;
+  Animate.restartOnHotReload = true;
   runApp(const MyApp());
 }
 
