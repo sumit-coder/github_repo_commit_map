@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import 'widgets/search_bar_card.dart';
 import 'package:http/http.dart' as http;
 
+import 'widgets/week_month_text.dart';
+
 class CommitHistoryScreen extends StatefulWidget {
   @override
   _CommitHistoryScreenState createState() => _CommitHistoryScreenState();
@@ -69,17 +71,42 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
                   Container(
                     // color: Colors.amber,
                     width: 624,
-                    height: 24,
+                    height: 44,
+                    margin: EdgeInsets.only(left: 44),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        for (var i = 0; i < 12; i++) Text('Jan'),
+                        // for (var i = 0; i < 12; i++) Text('Jan'),
+                        WeekMonthText(text: 'Jan'),
+                        WeekMonthText(text: 'Feb'),
+                        WeekMonthText(text: 'Mar'),
+                        WeekMonthText(text: 'Apr'),
+                        WeekMonthText(text: 'May'),
+                        WeekMonthText(text: 'Jun'),
+                        WeekMonthText(text: 'Jul'),
+                        WeekMonthText(text: 'Aug'),
+                        WeekMonthText(text: 'Set'),
+                        WeekMonthText(text: 'Oct'),
+                        WeekMonthText(text: 'Nov'),
+                        WeekMonthText(text: 'Dec'),
                       ],
                     ),
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('data'),
+                      const SizedBox(
+                        height: (12 * 7) + 16,
+                        width: 44,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            WeekMonthText(text: 'Sun'),
+                            WeekMonthText(text: 'Wed'),
+                            WeekMonthText(text: 'Sat'),
+                          ],
+                        ),
+                      ),
                       Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
