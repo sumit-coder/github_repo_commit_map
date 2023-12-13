@@ -63,7 +63,7 @@ class _DayInfoCardState extends State<DayInfoCard> {
               ),
               InfoLabelAndBody(
                 label: 'Day',
-                body: commitProvider.selectedDayDay.toString(),
+                body: commitProvider.selectedDayDay.substring(0, 3),
               ),
               InfoLabelAndBody(
                 label: 'Date',
@@ -76,11 +76,11 @@ class _DayInfoCardState extends State<DayInfoCard> {
             children: [
               InfoLabelAndBody(
                 label: 'week total',
-                body: '24',
+                body: commitProvider.weekCommitTotal.toString(),
               ),
               InfoLabelAndBody(
                 label: 'Week No',
-                body: '51',
+                body: commitProvider.weekNo.toString(),
               ),
               InfoLabelAndBody(
                 label: 'week',
