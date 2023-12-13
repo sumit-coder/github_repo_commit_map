@@ -11,9 +11,9 @@ class GitHubApi {
   Future<dynamic> getCommitHistory({required String userName, required String repositoryName}) async {
     final finalGetUrl = '$baseUrl$userName/$repositoryName$suffixUrl';
 
-    var response = await http.get(Uri.parse(finalGetUrl));
+    http.Response response = await http.get(Uri.parse(finalGetUrl));
 
-    var data = json.decode(response.body);
+    var data = await json.decode(response.body);
 
     log(data.toString());
     return data;

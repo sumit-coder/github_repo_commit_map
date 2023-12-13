@@ -5,6 +5,7 @@ import 'package:github_repo_commit_map/provider/commits_provider.dart';
 import 'package:github_repo_commit_map/utils/utility.dart';
 import 'package:provider/provider.dart';
 
+import 'widgets/day_info_card.dart';
 import 'widgets/search_bar_card.dart';
 import 'package:http/http.dart' as http;
 
@@ -47,13 +48,13 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
   Widget build(BuildContext context) {
     var commitProvider = Provider.of<CommitsProvider>(context, listen: true);
     return Scaffold(
-      backgroundColor: Color(0xFF3D4042),
+      backgroundColor: const Color(0xFF3D4042),
       body: Container(
         width: double.maxFinite,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 100),
+            const SizedBox(height: 100),
             SearchBarCard(
               onTapSearch: () async {
                 // fetchCommits();
@@ -63,7 +64,7 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
               },
               searchInputController: searchTextController,
             ),
-            SizedBox(height: 80),
+            const SizedBox(height: 80),
             Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -72,23 +73,23 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
                     // color: Colors.amber,
                     width: 624,
                     height: 44,
-                    margin: EdgeInsets.only(left: 44),
-                    child: Row(
+                    margin: const EdgeInsets.only(left: 44),
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // for (var i = 0; i < 12; i++) Text('Jan'),
-                        WeekMonthText(text: 'Jan'),
-                        WeekMonthText(text: 'Feb'),
-                        WeekMonthText(text: 'Mar'),
-                        WeekMonthText(text: 'Apr'),
-                        WeekMonthText(text: 'May'),
-                        WeekMonthText(text: 'Jun'),
-                        WeekMonthText(text: 'Jul'),
-                        WeekMonthText(text: 'Aug'),
-                        WeekMonthText(text: 'Set'),
-                        WeekMonthText(text: 'Oct'),
-                        WeekMonthText(text: 'Nov'),
-                        WeekMonthText(text: 'Dec'),
+                        WeekMonthText(text: 'Week 52'),
+                        // WeekMonthText(text: 'Feb'),
+                        // WeekMonthText(text: 'Mar'),
+                        // WeekMonthText(text: 'Apr'),
+                        // WeekMonthText(text: 'May'),
+                        // WeekMonthText(text: 'Jun'),
+                        // WeekMonthText(text: 'Jul'),
+                        // WeekMonthText(text: 'Aug'),
+                        // WeekMonthText(text: 'Set'),
+                        // WeekMonthText(text: 'Oct'),
+                        // WeekMonthText(text: 'Nov'),
+                        WeekMonthText(text: 'Week 1'),
                       ],
                     ),
                   ),
@@ -108,19 +109,19 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                           borderRadius: BorderRadius.circular(4),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.2),
-                              offset: Offset(2, 2),
+                              offset: const Offset(2, 2),
                               blurRadius: 2,
                             ),
                             BoxShadow(
                               color: Colors.black.withOpacity(0.2),
-                              offset: Offset(-2, -2),
+                              offset: const Offset(-2, -2),
                               blurRadius: 2,
                             ),
                           ],
@@ -138,6 +139,7 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
 
                             // print(Utility.normalizeCommitCounts(data, 1, 4, maxCount));
                             return WeekColumn(
+                              weekIndex: index,
                               maxCommitCount: maxCount,
                               weekCommitByDays: data[index]['days'],
                             );
@@ -148,6 +150,10 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
                   )
                 ],
               ),
+            ),
+            const SizedBox(height: 50),
+            DayInfoCard(
+              commitData: data,
             ),
           ],
         ),
@@ -161,11 +167,14 @@ class WeekColumn extends StatelessWidget {
     super.key,
     required this.weekCommitByDays,
     required this.maxCommitCount,
+    required this.weekIndex,
     // required this.weekData,
   });
 
   final List<dynamic> weekCommitByDays;
   final int maxCommitCount;
+  final int weekIndex;
+
   // List<String> weekDays = [
   //   "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday",
   // ];
@@ -175,10 +184,12 @@ class WeekColumn extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          for (var day in weekCommitByDays)
+          for (var dayIdx = 0; dayIdx < weekCommitByDays.length; dayIdx++)
             HeatBox(
-              commitCount: day as int,
-              heatLevel: Utility.normalizeCommitCounts(day, 1, 5, maxCommitCount),
+              dayIndex: dayIdx,
+              weekIndex: weekIndex,
+              commitCount: weekCommitByDays[dayIdx] as int,
+              heatLevel: Utility.normalizeCommitCounts(weekCommitByDays[dayIdx], 1, 5, maxCommitCount),
             )
         ],
       ),
@@ -187,10 +198,12 @@ class WeekColumn extends StatelessWidget {
 }
 
 class HeatBox extends StatelessWidget {
-  HeatBox({super.key, required this.heatLevel, required this.commitCount});
+  HeatBox({super.key, required this.heatLevel, required this.commitCount, required this.dayIndex, required this.weekIndex});
 
   final dynamic heatLevel;
   final int commitCount;
+  final int dayIndex;
+  final int weekIndex;
 
   final Color l0Color = Colors.grey.shade300;
   final Color l1Color = const Color(0xFF0e4429);
@@ -200,6 +213,7 @@ class HeatBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var commitProvider = Provider.of<CommitsProvider>(context);
     return InkWell(
       onTap: () {
         print("commitCount: $commitCount | heatLevel: $heatLevel");
@@ -208,12 +222,14 @@ class HeatBox extends StatelessWidget {
         // print(weekStartDate.add(Duration(days: weekDayIndex)));
         print(weekStart);
 
+        commitProvider.onTapHeatMapDay(dayIdx: dayIndex, weekIdx: weekIndex);
+
         // print("currentDay: $commitCount | weekStartDate: ${weekStartDate.add(Duration(days: weekDayIndex))}");
       },
       child: Container(
         width: 10,
         height: 10,
-        margin: EdgeInsets.all(1),
+        margin: const EdgeInsets.all(1),
         decoration: BoxDecoration(
           color: heatLevel == 0
               ? l0Color

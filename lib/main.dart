@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<CommitsProvider>(create: (context) => CommitsProvider()),
+        // Provider<CommitsProvider>(create: (context) => CommitsProvider()),
+        ChangeNotifierProvider(create: (context) => CommitsProvider())
       ],
       child: MaterialApp(
         title: 'Github Repo Commit Map',
