@@ -34,9 +34,9 @@ class _DayInfoCardState extends State<DayInfoCard> {
     return Container(
       width: 300,
       height: 150,
-      padding: const EdgeInsets.all(8),
+      // padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 255, 255),
+        color: const Color(0xFF121212),
         borderRadius: BorderRadius.circular(4),
         boxShadow: [
           BoxShadow(
@@ -63,13 +63,17 @@ class _DayInfoCardState extends State<DayInfoCard> {
               ),
               InfoLabelAndBody(
                 label: 'Day',
-                body: commitProvider.selectedDayDay.substring(0, 3),
+                body: commitProvider.selectedDayDay,
               ),
               InfoLabelAndBody(
                 label: 'Date',
                 body: getNormalDateFormDateTime(commitProvider.selectedDayDate),
               ),
             ],
+          ),
+          Container(
+            height: 1,
+            color: Colors.grey.shade600,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -106,14 +110,14 @@ class InfoLabelAndBody extends StatelessWidget {
       children: [
         Text(
           label.toUpperCase(),
-          style: TextStyle(color: Colors.grey, fontSize: 11),
+          style: TextStyle(color: Colors.grey.shade600, fontSize: 11),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           body,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.w600,
-            color: Colors.grey.shade900,
+            color: Colors.grey,
             fontSize: 16,
           ),
         ),

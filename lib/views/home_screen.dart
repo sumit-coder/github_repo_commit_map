@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:github_repo_commit_map/provider/commits_provider.dart';
 import 'package:github_repo_commit_map/utils/utility.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/day_info_card.dart';
@@ -55,6 +56,22 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 100),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(3),
+                color: const Color(0xFF121212),
+              ),
+              child: Text(
+                "52 Week Commit Heat Map",
+                style: GoogleFonts.dmSerifDisplay(
+                  color: Colors.grey,
+                  fontSize: 18,
+                  height: 1,
+                ),
+              ),
+            ),
+            const SizedBox(height: 50),
             SearchBarCard(
               onTapSearch: () async {
                 // fetchCommits();
@@ -64,50 +81,50 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
               },
               searchInputController: searchTextController,
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 60),
             Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    // color: Colors.amber,
-                    width: 624,
-                    height: 44,
-                    margin: const EdgeInsets.only(left: 44),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // for (var i = 0; i < 12; i++) Text('Jan'),
-                        WeekMonthText(text: 'Week 52'),
-                        // WeekMonthText(text: 'Feb'),
-                        // WeekMonthText(text: 'Mar'),
-                        // WeekMonthText(text: 'Apr'),
-                        // WeekMonthText(text: 'May'),
-                        // WeekMonthText(text: 'Jun'),
-                        // WeekMonthText(text: 'Jul'),
-                        // WeekMonthText(text: 'Aug'),
-                        // WeekMonthText(text: 'Set'),
-                        // WeekMonthText(text: 'Oct'),
-                        // WeekMonthText(text: 'Nov'),
-                        WeekMonthText(text: 'Week 1'),
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   // color: Colors.amber,
+                  //   width: 624,
+                  //   height: 44,
+                  //   margin: const EdgeInsets.only(left: 44),
+                  //   child: const Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       // for (var i = 0; i < 12; i++) Text('Jan'),
+                  //       WeekMonthText(text: 'Week 52'),
+                  //       // WeekMonthText(text: 'Feb'),
+                  //       // WeekMonthText(text: 'Mar'),
+                  //       // WeekMonthText(text: 'Apr'),
+                  //       // WeekMonthText(text: 'May'),
+                  //       // WeekMonthText(text: 'Jun'),
+                  //       // WeekMonthText(text: 'Jul'),
+                  //       // WeekMonthText(text: 'Aug'),
+                  //       // WeekMonthText(text: 'Set'),
+                  //       // WeekMonthText(text: 'Oct'),
+                  //       // WeekMonthText(text: 'Nov'),
+                  //       WeekMonthText(text: 'Week 1'),
+                  //     ],
+                  //   ),
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: (12 * 7) + 16,
-                        width: 44,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            WeekMonthText(text: 'Sun'),
-                            WeekMonthText(text: 'Wed'),
-                            WeekMonthText(text: 'Sat'),
-                          ],
-                        ),
-                      ),
+                      // const SizedBox(
+                      //   height: (12 * 7) + 16,
+                      //   width: 44,
+                      //   child: Column(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       WeekMonthText(text: 'Sun'),
+                      //       WeekMonthText(text: 'Wed'),
+                      //       WeekMonthText(text: 'Sat'),
+                      //     ],
+                      //   ),
+                      // ),
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
