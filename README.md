@@ -1,7 +1,6 @@
-# github_repo_commit_map
+# Github Repo Commit Map | [Live Demo](https://github-repo-commit-map.sumitpanwar.com/)
 
-![Screenshot 2023-12-13 18-06-13](https://github.com/sumit-coder/github_repo_commit_map/assets/55745378/a7385a60-60c5-4473-9f86-a6bd8f1f8f6f)
-
+![https://sumitpanwar.com](https://github.com/sumit-coder/github_repo_commit_map/assets/55745378/a7385a60-60c5-4473-9f86-a6bd8f1f8f6f)
 
 ## Getting Started
 
