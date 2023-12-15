@@ -73,7 +73,7 @@ class _DayInfoCardState extends State<DayInfoCard> {
           ),
           Container(
             height: 1,
-            color: Colors.grey.shade600,
+            color: Colors.grey.shade800,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
