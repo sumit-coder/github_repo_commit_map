@@ -53,127 +53,130 @@ class _CommitHistoryScreenState extends State<CommitHistoryScreen> {
       backgroundColor: const Color(0xFF3D4042),
       body: Container(
         width: double.maxFinite,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 100),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(3),
-                color: const Color(0xFF121212),
-              ),
-              child: Text(
-                "52 Week Commit Heat Map",
-                style: GoogleFonts.dmSerifDisplay(
-                  color: Colors.grey,
-                  fontSize: 18,
-                  height: 1,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 100),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(3),
+                  color: const Color(0xFF121212),
+                ),
+                child: Text(
+                  "52 Week Commit Heat Map",
+                  style: GoogleFonts.dmSerifDisplay(
+                    color: Colors.grey,
+                    fontSize: 18,
+                    height: 1,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 50),
-            SearchBarCard(
-              onTapSearch: () async {
-                // fetchCommits();
-                data = await commitProvider.getRepoCommitHistory(searchTextController.text);
+              const SizedBox(height: 50),
+              SearchBarCard(
+                onTapSearch: () async {
+                  // fetchCommits();
+                  data = await commitProvider.getRepoCommitHistory(searchTextController.text);
 
-                setState(() {});
-              },
-              searchInputController: searchTextController,
-            ),
-            const SizedBox(height: 60),
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Container(
-                  //   // color: Colors.amber,
-                  //   width: 624,
-                  //   height: 44,
-                  //   margin: const EdgeInsets.only(left: 44),
-                  //   child: const Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       // for (var i = 0; i < 12; i++) Text('Jan'),
-                  //       WeekMonthText(text: 'Week 52'),
-                  //       // WeekMonthText(text: 'Feb'),
-                  //       // WeekMonthText(text: 'Mar'),
-                  //       // WeekMonthText(text: 'Apr'),
-                  //       // WeekMonthText(text: 'May'),
-                  //       // WeekMonthText(text: 'Jun'),
-                  //       // WeekMonthText(text: 'Jul'),
-                  //       // WeekMonthText(text: 'Aug'),
-                  //       // WeekMonthText(text: 'Set'),
-                  //       // WeekMonthText(text: 'Oct'),
-                  //       // WeekMonthText(text: 'Nov'),
-                  //       WeekMonthText(text: 'Week 1'),
-                  //     ],
-                  //   ),
-                  // ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // const SizedBox(
-                      //   height: (12 * 7) + 16,
-                      //   width: 44,
-                      //   child: Column(
-                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //     children: [
-                      //       WeekMonthText(text: 'Sun'),
-                      //       WeekMonthText(text: 'Wed'),
-                      //       WeekMonthText(text: 'Sat'),
-                      //     ],
-                      //   ),
-                      // ),
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                          borderRadius: BorderRadius.circular(4),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              offset: const Offset(2, 2),
-                              blurRadius: 2,
-                            ),
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              offset: const Offset(-2, -2),
-                              blurRadius: 2,
-                            ),
-                          ],
-                        ),
-                        // width: double.maxFinite,
-                        height: (12 * 7) + 16,
-                        width: (12 * 52) + 16,
-                        child: ListView.builder(
-                          itemCount: data.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            // Get the maximum commit count using the reduce method
-                            int maxCount = Utility.getMaxCommitCountOnSingleDay(data);
-                            print(maxCount);
-
-                            // print(Utility.normalizeCommitCounts(data, 1, 4, maxCount));
-                            return WeekColumn(
-                              weekIndex: index,
-                              maxCommitCount: maxCount,
-                              weekCommitByDays: data[index]['days'],
-                            ).animate().fadeIn(delay: Duration(milliseconds: index * 20));
-                          },
-                        ),
-                      ),
-                    ],
-                  )
-                ],
+                  setState(() {});
+                },
+                searchInputController: searchTextController,
               ),
-            ),
-            const SizedBox(height: 50),
-            DayInfoCard(
-              commitData: data,
-            ),
-          ],
+              const SizedBox(height: 60),
+              Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Container(
+                    //   // color: Colors.amber,
+                    //   width: 624,
+                    //   height: 44,
+                    //   margin: const EdgeInsets.only(left: 44),
+                    //   child: const Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       // for (var i = 0; i < 12; i++) Text('Jan'),
+                    //       WeekMonthText(text: 'Week 52'),
+                    //       // WeekMonthText(text: 'Feb'),
+                    //       // WeekMonthText(text: 'Mar'),
+                    //       // WeekMonthText(text: 'Apr'),
+                    //       // WeekMonthText(text: 'May'),
+                    //       // WeekMonthText(text: 'Jun'),
+                    //       // WeekMonthText(text: 'Jul'),
+                    //       // WeekMonthText(text: 'Aug'),
+                    //       // WeekMonthText(text: 'Set'),
+                    //       // WeekMonthText(text: 'Oct'),
+                    //       // WeekMonthText(text: 'Nov'),
+                    //       WeekMonthText(text: 'Week 1'),
+                    //     ],
+                    //   ),
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // const SizedBox(
+                        //   height: (12 * 7) + 16,
+                        //   width: 44,
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //     children: [
+                        //       WeekMonthText(text: 'Sun'),
+                        //       WeekMonthText(text: 'Wed'),
+                        //       WeekMonthText(text: 'Sat'),
+                        //     ],
+                        //   ),
+                        // ),
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            borderRadius: BorderRadius.circular(4),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                offset: const Offset(2, 2),
+                                blurRadius: 2,
+                              ),
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                offset: const Offset(-2, -2),
+                                blurRadius: 2,
+                              ),
+                            ],
+                          ),
+                          // width: double.maxFinite,
+                          height: (12 * 7) + 16,
+                          width: (12 * 52) + 16,
+                          child: ListView.builder(
+                            itemCount: data.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              // Get the maximum commit count using the reduce method
+                              int maxCount = Utility.getMaxCommitCountOnSingleDay(data);
+                              print(maxCount);
+
+                              // print(Utility.normalizeCommitCounts(data, 1, 4, maxCount));
+                              return WeekColumn(
+                                weekIndex: index,
+                                maxCommitCount: maxCount,
+                                weekCommitByDays: data[index]['days'],
+                              ).animate().fadeIn(delay: Duration(milliseconds: index * 20));
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(height: 50),
+              DayInfoCard(
+                commitData: data,
+              ),
+              const SizedBox(height: 50),
+            ],
+          ),
         ),
       ),
     );
