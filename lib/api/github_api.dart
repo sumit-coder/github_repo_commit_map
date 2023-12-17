@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
+import 'package:github_repo_commit_map/utils/consts.dart';
 import 'package:http/http.dart' as http;
 
 class GitHubApi {
@@ -16,13 +18,15 @@ class GitHubApi {
     var data = await json.decode(response.body);
 
     log(data.toString());
-    return data;
+    // return data;
 
-    // if (response.statusCode == 200) {
-    //   return data;
-    // } else {
-    //   log(response.statusCode.toString());
-    //   throw Exception('Failed to load commits');
-    // }
+    if (response.statusCode == 200) {
+      return data;
+    } else {
+      log(response.statusCode.toString());
+      Exception('Failed to load commits');
+      ScaffoldMessenger.of(navigatorContextKey.currentContext!).showSnackBar(SnackBar(content: Text("Failed to load commits")));
+      return [];
+    }
   }
 }

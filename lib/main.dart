@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:github_repo_commit_map/provider/commits_provider.dart';
+import 'package:github_repo_commit_map/utils/consts.dart';
 import 'package:provider/provider.dart';
 
 import 'views/home_screen.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CommitsProvider())
       ],
       child: MaterialApp(
+        navigatorKey: navigatorContextKey,
         title: 'Github Repo Commit Map',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
